@@ -49,29 +49,12 @@
     <div class="flex flex-row text-white mx-4 justify-center mt-8">
       <!-- Categorias -->
       <div class="">
-        <button class="flex flex-row align-baseline gap-2">
+        <button class="flex flex-row align-baseline gap-2" id="category-button">
           Categorias
           <i class="fa-solid fa-sort-down"></i>
         </button>
-        <div class="grid grid-cols-2 w-[250px]">
-          <label
-            >Recital <input type="checkbox" id="recital" value="recital"
-          /></label>
-          <label
-            >Recital <input type="checkbox" id="recital2" value="recital2"
-          /></label>
-          <label
-            >Recital <input type="checkbox" id="recital3" value="recital3"
-          /></label>
-          <label
-            >Recital <input type="checkbox" id="recital4" value="recital4"
-          /></label>
-          <label
-            >Recital <input type="checkbox" id="recital5" value="recital5"
-          /></label>
-          <label
-            >Recital <input type="checkbox" id="recital6" value="recital6"
-          /></label>
+        <div class="grid grid-cols-2 w-[250px]" id="categories-container">
+
         </div>
       </div>
       <!-- Searchbar -->
@@ -83,75 +66,12 @@
           type="text"
           class="h-8 text-white focus:outline-none bg-transparent"
           placeholder="Buscar"
+          id="search-input"
         />
       </div>
     </div>
-    <main class="mx-8 flex flex-row gap-6 flex-wrap mt-8 justify-center">
-      <div
-        class="w-[300px] h-[300px] rounded-2xl text-white bg-[url('https://i.postimg.cc/fyLqZY9K/10-K-for-life.jpg')] bg-cover bg-center"
-      >
-        <p
-          class="bg-[#D90368] w-fit px-4 py-1 rounded-xl relative left-[150px] bottom-[15px]"
-        >
-          Deportiva
-        </p>
-        <div class="flex flex-col mt-[60%] px-4 bg-[#D90368] w-fit py-1 mx-2">
-          <p class="">Maraton 4km</p>
-          <p class="text-sm">20 de mayo de 2023</p>
-        </div>
-      </div>
-      <div
-        class="w-[300px] h-[300px] rounded-2xl text-white bg-[url('https://i.postimg.cc/fyLqZY9K/10-K-for-life.jpg')] bg-cover bg-center"
-      >
-        <p
-          class="bg-[#D90368] w-fit px-4 py-1 rounded-xl relative left-[150px] bottom-[15px]"
-        >
-          Deportiva
-        </p>
-        <div class="flex flex-col mt-[60%] px-4 bg-[#D90368] w-fit py-1 mx-2">
-          <p class="">Maraton 4km</p>
-          <p class="text-sm">20 de mayo de 2023</p>
-        </div>
-      </div>
-      <div
-        class="w-[300px] h-[300px] rounded-2xl text-white bg-[url('https://i.postimg.cc/fyLqZY9K/10-K-for-life.jpg')] bg-cover bg-center"
-      >
-        <p
-          class="bg-[#D90368] w-fit px-4 py-1 rounded-xl relative left-[150px] bottom-[15px]"
-        >
-          Deportiva
-        </p>
-        <div class="flex flex-col mt-[60%] px-4 bg-[#D90368] w-fit py-1 mx-2">
-          <p class="">Maraton 4km</p>
-          <p class="text-sm">20 de mayo de 2023</p>
-        </div>
-      </div>
-      <div
-        class="w-[300px] h-[300px] rounded-2xl text-white bg-[url('https://i.postimg.cc/fyLqZY9K/10-K-for-life.jpg')] bg-cover bg-center"
-      >
-        <p
-          class="bg-[#D90368] w-fit px-4 py-1 rounded-xl relative left-[150px] bottom-[15px]"
-        >
-          Deportiva
-        </p>
-        <div class="flex flex-col mt-[60%] px-4 bg-[#D90368] w-fit py-1 mx-2">
-          <p class="">Maraton 4km</p>
-          <p class="text-sm">20 de mayo de 2023</p>
-        </div>
-      </div>
-      <div
-        class="w-[300px] h-[300px] rounded-2xl text-white bg-[url('https://i.postimg.cc/fyLqZY9K/10-K-for-life.jpg')] bg-cover bg-center"
-      >
-        <p
-          class="bg-[#D90368] w-fit px-4 py-1 rounded-xl relative left-[150px] bottom-[15px]"
-        >
-          Deportiva
-        </p>
-        <div class="flex flex-col mt-[60%] px-4 bg-[#D90368] w-fit py-1 mx-2">
-          <p class="">Maraton 4km</p>
-          <p class="text-sm">20 de mayo de 2023</p>
-        </div>
-      </div>
+    <main class="mx-8 flex flex-row gap-6 flex-wrap mt-8 justify-center" id="main-home">
+
     </main>
 
         <!-- footer -->
@@ -164,6 +84,9 @@
           </div>
     
         </footer>
-        
+        <script src="../scripts/apiConnection.js"></script>
+        <script src="../scripts/templates.js"></script>
+        <script src="../scripts/functions.js"></script>
+        <script src="../scripts/upcoming.js"></script>
   </body>
 </html>
