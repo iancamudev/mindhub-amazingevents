@@ -16,6 +16,26 @@ let indexJs = async () => {
     if (categoryBtnActive) {
       categoriesContainer.innerHTML = categoriesGenerator(categories)
       categoryBtn.innerHTML = 'Categorias: <i class="fa-solid fa-sort-down duration-300"></i>'
+
+      //Le agregamos un event listener para hacer el filtrado, si lo ponemos afuera intenta agarrar los checkbox antes de que se muestren en el dom
+      let allCheckBox = document.querySelectorAll('input[type="checkbox"]')
+      //Agregamos un event listener a los checkbox
+      allCheckBox.forEach((checkbox)=>checkbox.addEventListener('change', () => {
+        console.log('Se ejecuto un change: ', checkbox);
+        console.log(checkbox.checked)
+        if (checkbox.checked) {
+          filtrados = events.filter(
+            (event) => compare(event, searchInput.value) && checkbox.value.includes(event.category)
+            );
+            main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
+        } else {
+          filtrados = events.filter(
+            (event) => compare(event, searchInput.value)
+            );
+            main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
+        }
+          
+      }))
     } else {
       categoriesContainer.innerHTML = ''
       categoryBtn.innerHTML = 'Categorias: <i class="fa-solid fa-sort-down rotate-180 duration-300"></i>'
@@ -23,16 +43,18 @@ let indexJs = async () => {
 });
 
   //Filters manager
-  let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
   let searchInput = document.getElementById('search-input');
+
+
+  //Agregamos un event listener para cuando se escriba en el input, lance un filtrado.
   searchInput.addEventListener('keyup', ()=>{
+    let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
     filtrados = events.filter(
-      (event) => {
-        console.log('Input value: ', searchInput.value, 'Event category: ', event.category, 'Check List: ', checkList, 'Sentencia: ' + compare(event, searchInput.value) && (checkList.length === 0 || checkList.includes(event.category)))
-        return compare(event, searchInput.value) && (checkList.length === 0 || checkList.includes(event.category))
-      });
+      (event) => compare(event, searchInput.value) && (checkList.length === 0 || checkList.includes(event.category))
+      );
     main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
   })
+
 
 
 
