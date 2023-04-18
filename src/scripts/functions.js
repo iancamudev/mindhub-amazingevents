@@ -36,5 +36,24 @@ let filterData = ({events, checkList, searchInput, container}) => {
       (event) => compare(event, searchInput.value))
   } 
   container.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
-  console.log(filtrados)
 }
+
+//Navbar
+window.addEventListener('resize', ()=>{  
+  let nav = document.getElementById('nav-container')
+  if (window.innerWidth > 750) {
+    nav.innerHTML = navbarTemplate()
+  } else {
+    nav.innerHTML = navbarMobileTemplate()
+  }
+})
+let displayNavbar = () => {
+  let nav = document.getElementById('nav-container')
+  if (window.innerWidth > 750) {
+    nav.innerHTML = navbarTemplate()
+  } else {
+    nav.innerHTML = navbarMobileTemplate()
+  }
+}
+displayNavbar()
+
