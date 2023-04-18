@@ -21,20 +21,8 @@ let indexJs = async () => {
       let allCheckBox = document.querySelectorAll('input[type="checkbox"]')
       //Agregamos un event listener a los checkbox
       allCheckBox.forEach((checkbox)=>checkbox.addEventListener('change', () => {
-        console.log('Se ejecuto un change: ', checkbox);
-        console.log(checkbox.checked)
-        if (checkbox.checked) {
-          filtrados = events.filter(
-            (event) => compare(event, searchInput.value) && checkbox.value.includes(event.category)
-            );
-            main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
-        } else {
-          filtrados = events.filter(
-            (event) => compare(event, searchInput.value)
-            );
-            main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
-        }
-          
+        let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
+        filterData({events, checkList, searchInput, container: main})
       }))
     } else {
       categoriesContainer.innerHTML = ''
@@ -49,10 +37,7 @@ let indexJs = async () => {
   //Agregamos un event listener para cuando se escriba en el input, lance un filtrado.
   searchInput.addEventListener('keyup', ()=>{
     let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
-    filtrados = events.filter(
-      (event) => compare(event, searchInput.value) && (checkList.length === 0 || checkList.includes(event.category))
-      );
-    main.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
+    filterData({events, checkList, searchInput, container: main})
   })
 
 
