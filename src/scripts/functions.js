@@ -35,8 +35,12 @@ let filterData = ({events, checkList, searchInput, container}) => {
     filtrados = events.filter(
       (event) => compare(event, searchInput.value))
   } 
+  filtrados.length === 0 ? notEventsFound() : "" ;
+
   container.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
+
 }
+
 
 //Navbar
 window.addEventListener('resize', ()=>{  
