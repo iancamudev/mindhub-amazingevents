@@ -105,34 +105,6 @@ let navbarMobileTemplate = () => {
 
 
 
-let notEventsFound = () =>{
-  Swal.fire({
-          html: `
-              <div class="row cardevent bg-light" > 
-                <div class="col-md-6">
-                  <img src="../assets/no_result.png" class="card-img-notfound"/>
-                </div>
-              
-                <div class="col-md-6 der ">
-                    <div class="card-body-event">
-                        <h4 class="card-title">No events found</h4>
-                        <p class="card-text"> Try another search!</p>
-                    </div>
-                </div>
-
-              </div>
-      `,
-        showCloseButton: false,
-        confirmButtonText: 'Back',
-        width: '50%',
-        //grow: 'row',
-        padding: '1rem',
-        scrollbarPadding: false,
-        color: '#716add',
-        backdrop: 'rgba(247,0,18,0.38)',
-      });
-}
-
 
 
 

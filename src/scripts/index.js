@@ -4,7 +4,7 @@ let indexJs = async () => {
 
   let main = document.getElementById("main-home");
 
-  main.innerHTML = events.map((el) => cardGenerator(el)).join(" ");
+  filterData({events, currentDate})
 
 
   //Category manager
@@ -22,7 +22,7 @@ let indexJs = async () => {
       //Agregamos un event listener a los checkbox
       allCheckBox.forEach((checkbox)=>checkbox.addEventListener('change', () => {
         let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
-        filterData({events, checkList, searchInput, container: main})
+        filterData({events, checkList, currentDate})
       }))
     } else {
       categoriesContainer.innerHTML = ''

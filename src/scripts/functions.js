@@ -22,23 +22,52 @@ let categoriesGenerator = (categories) => {
 }
 
 let compare = (event, value) => {
+  console.log(event, value)
   return (event.name.toLowerCase().includes(value.toLowerCase()) || event.description.toLowerCase().trim().includes(value.toLowerCase()) || 
         event.place.toLowerCase().includes(value.toLowerCase()))
 }
 
-let filterData = ({events, checkList, searchInput, container}) => {
-  let filtrados
-  if (checkList.length) {
-    filtrados = events.filter(
-      (event) => compare(event, searchInput.value) && checkList.includes(event.category));
-  } else {
-    filtrados = events.filter(
+let getEvents = ({events, currentDate}) => {
+  const currentPage = window.location.href.split('/').at(-1).split('.')[0]
+  console.log(currentPage)
+  console.log('getEvents(): events: ',events);
+  let orderedEvents;
+  switch (currentPage) {
+    case 'upcoming' : 
+    orderedEvents = events.filter((event)=> new Date(event.date) > new Date(currentDate)).sort((a,b)=>new Date(a.date) - new Date(b.date));
+      return orderedEvents
+    case 'past' : 
+    orderedEvents = events.filter((event)=> new Date(event.date) < new Date(currentDate)).sort((a,b)=> new Date(b.date) - new Date(a.date));
+      return orderedEvents
+    default: 
+    return events
+    
+  }
+}
+
+let displayEvents = (events) => {
+  let main = document.getElementById('main-home')
+  main.innerHTML = events.map((el) => cardGenerator(el)).join(" ");
+}
+
+let filterData =  ({events, currentDate, searchInput, checkList}) => {
+  //Obtenemos los eventos segun si los pide por upcoming past o en home
+  let filtrados = getEvents({events, currentDate})
+  console.log('filterData(): Filtrados: ', filtrados)
+  //Si hay checklist filtramos por su value
+  if ((checkList && checkList.length) && searchInput.value !== '') {
+    filtrados = filtrados.filter(
+      (event) => checkList.includes(event.category) && compare(event, searchInput.value)) 
+  //Si hay un search input filtramos por su value
+  } else if ((searchInput && searchInput.value !== '') && !checkList.length) {
+    filtrados = filtrados.filter(
       (event) => compare(event, searchInput.value))
-  } 
-  filtrados.length === 0 ? notEventsFound() : "" ;
-
-  container.innerHTML = filtrados.map((el) => cardGenerator(el)).join(" ");
-
+  } else if ((checkList && checkList.length) && !searchInput.value) {
+    filtrados = filtrados.filter(
+      (event) => checkList.includes(event.category))
+  }
+  console.log('2- filterData(): Filtrados: ', filtrados)
+  filtrados.length > 0 ? displayEvents(filtrados) : notEventsFound()
 }
 
 
