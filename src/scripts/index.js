@@ -22,7 +22,7 @@ let indexJs = async () => {
       //Agregamos un event listener a los checkbox
       allCheckBox.forEach((checkbox)=>checkbox.addEventListener('change', () => {
         let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
-        filterData({events, checkList, currentDate})
+        filterData({events, checkList, currentDate, searchInput})
       }))
     } else {
       categoriesContainer.innerHTML = ''
@@ -37,7 +37,7 @@ let indexJs = async () => {
   //Agregamos un event listener para cuando se escriba en el input, lance un filtrado.
   searchInput.addEventListener('keyup', ()=>{
     let checkList = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.value)
-    filterData({events, checkList, searchInput, container: main})
+    filterData({events, checkList, searchInput, currentDate})
   })
 
 

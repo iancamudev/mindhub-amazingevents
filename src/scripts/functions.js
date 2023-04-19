@@ -22,26 +22,22 @@ let categoriesGenerator = (categories) => {
 }
 
 let compare = (event, value) => {
-  console.log(event, value)
   return (event.name.toLowerCase().includes(value.toLowerCase()) || event.description.toLowerCase().trim().includes(value.toLowerCase()) || 
         event.place.toLowerCase().includes(value.toLowerCase()))
 }
 
 let getEvents = ({events, currentDate}) => {
   const currentPage = window.location.href.split('/').at(-1).split('.')[0]
-  console.log(currentPage)
-  console.log('getEvents(): events: ',events);
   let orderedEvents;
   switch (currentPage) {
     case 'upcoming' : 
     orderedEvents = events.filter((event)=> new Date(event.date) > new Date(currentDate)).sort((a,b)=>new Date(a.date) - new Date(b.date));
-      return orderedEvents
+    return orderedEvents
     case 'past' : 
     orderedEvents = events.filter((event)=> new Date(event.date) < new Date(currentDate)).sort((a,b)=> new Date(b.date) - new Date(a.date));
-      return orderedEvents
+    return orderedEvents
     default: 
     return events
-    
   }
 }
 
@@ -53,9 +49,8 @@ let displayEvents = (events) => {
 let filterData =  ({events, currentDate, searchInput, checkList}) => {
   //Obtenemos los eventos segun si los pide por upcoming past o en home
   let filtrados = getEvents({events, currentDate})
-  console.log('filterData(): Filtrados: ', filtrados)
   //Si hay checklist filtramos por su value
-  if ((checkList && checkList.length) && searchInput.value !== '') {
+  if ((checkList && checkList.length) && (searchInput.value !== '')) {
     filtrados = filtrados.filter(
       (event) => checkList.includes(event.category) && compare(event, searchInput.value)) 
   //Si hay un search input filtramos por su value
@@ -66,7 +61,6 @@ let filterData =  ({events, currentDate, searchInput, checkList}) => {
     filtrados = filtrados.filter(
       (event) => checkList.includes(event.category))
   }
-  console.log('2- filterData(): Filtrados: ', filtrados)
   filtrados.length > 0 ? displayEvents(filtrados) : notEventsFound()
 }
 
