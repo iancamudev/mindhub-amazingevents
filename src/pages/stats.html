@@ -22,19 +22,58 @@
 
     <title>Upcoming Events</title>
   </head>
-  <body class="bg-[#1C2829]">
+  <body class="bg-[#1C2829] flex flex-col justify-between min-h-[100vh]">
     <!-- Navbar -->
     <div id="nav-container" class="w-full h-auto"></div>
 
    
     
-    <main class="mx-8 flex flex-row gap-6 flex-wrap mt-8 justify-center">
+    <main class="mx-8 flex flex-row gap-6 flex-wrap mt-8 justify-center" id="main-stats">
       
-      <!-- table -->
+      <section class="flex flex-col gap-4" >
+        <h3 class="text-[#D90368] px-4 py-2 border-2 border-[#D90368] text-bold w-fit">
+          Events statistics
+        </h3>
+        <div class="flex flex-col gap-4" id="firstTable-container"></div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h3 class="text-[#D90368] px-4 py-2 border-2 border-[#D90368] text-bold w-fit">
+          Upcoming events statistics by category
+        </h3>
+        <div class="bg-slate-300 rounded-xl py-2 px-4">
+          <div class="grid grid-cols-3 gap-4 font-bold">
+            <p>Categories</p>
+            <p>Revenues</p>
+            <p>Attendance</p>
+          </div>
+          <div class="flex flex-col" id="secondTable-container">
+          </div>
+
+        </div>
+        
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h3 class="text-[#D90368] px-4 py-2 border-2 border-[#D90368] text-bold w-fit">
+          Past events statistics by category
+        </h3>
+        <div class="bg-slate-300 rounded-xl py-2 px-4">
+          <div class="grid grid-cols-3 gap-4 font-bold">
+            <p>Categories</p>
+            <p>Revenues</p>
+            <p>Attendance</p>
+          </div>
+          <div class="flex flex-col" id="thirdTable-container">
+          </div>
+
+        </div>
+        
+      </section>
 
 
     </main>
-
+    
         <!-- footer -->
         <footer class="w-full flex flex-row justify-between items-center px-20 mt-1 ">
       

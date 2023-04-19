@@ -41,6 +41,8 @@ let getEvents = ({events, currentDate}) => {
   }
 }
 
+
+
 let displayEvents = (events) => {
   let main = document.getElementById('main-home')
   main.innerHTML = events.map((el) => cardGenerator(el)).join(" ");
@@ -84,3 +86,49 @@ let displayNavbar = () => {
 }
 displayNavbar()
 
+let orderEvents = ({events, order, currentDate}) => {
+  let orderedEvents;
+  switch (order) {
+    case 'upcoming' : 
+    orderedEvents = events.filter((event)=> new Date(event.date) > new Date(currentDate)).sort((a,b)=>new Date(a.date) - new Date(b.date));
+    break
+    case 'past' : 
+    orderedEvents = events.filter((event)=> new Date(event.date) < new Date(currentDate)).sort((a,b)=> new Date(b.date) - new Date(a.date));
+    break
+  }
+  let orderedCategories = Array.from(new Set(orderedEvents.map((event)=>event.category)))
+  return {orderedEvents, orderedCategories}
+}
+
+let percAttendance = (events, value) => {
+  let arr = events.map((event)=>{return {name: event.name, percentageAttendance: (event.assistance / event.capacity) * 100}}).sort((a,b)=>b.percentageAttendance - a.percentageAttendance)
+  return value === 'highest' ? arr[0] : arr.at(-1)
+}
+let highestCapacity = (events) => {
+  let arr = events.sort((a,b)=>b.capacity - a.capacity)
+  return arr[0]
+}
+
+let categoriesFilter = (events, categories) => {
+  let arr = []
+  for (let category of categories) {
+    let revenues = events.reduce((revenues, event) => revenues += (event.category === category ? event.price * event.estimate : 0) , 0)
+    let capacity = events.reduce((capacity, event) => capacity += (event.category === category ? event.capacity : 0) , 0)
+    let estimate = events.reduce((estimate, event) => estimate += (event.category === category ? event.estimate : 0) , 0)
+    arr.push({category: category, revenues, attendance: (estimate / capacity ) * 100
+     })
+  }
+  return arr
+}
+
+let categoriesPastFilter = (events, categories) => {
+  let arr = []
+  for (let category of categories) {
+    let revenues = events.reduce((revenues, event) => revenues += (event.category === category ? event.price * event.assistance : 0) , 0)
+    let capacity = events.reduce((capacity, event) => capacity += (event.category === category ? event.capacity : 0) , 0)
+    let assistance = events.reduce((assistance, event) => assistance += (event.category === category ? event.assistance : 0) , 0)
+    arr.push({category: category, revenues, attendance: (assistance / capacity ) * 100
+     })
+  }
+  return arr
+}

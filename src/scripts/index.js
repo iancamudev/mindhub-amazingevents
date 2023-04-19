@@ -6,7 +6,6 @@ let indexJs = async () => {
 
   filterData({events, currentDate})
 
-
   //Category manager
   let categoryBtnActive = false;
   let categoryBtn = document.getElementById("category-button");
