@@ -102,11 +102,23 @@ let navbarMobileTemplate = () => {
 
     </nav>`;
 };
-
-
-
-
-
-
-
 navbarTemplate()
+
+let templateCardStats = (title, nameEvent, value) => {
+  return `<div class="flex flex-col bg-slate-300 rounded-xl px-4 py-2">
+  <p class="text-bold">${title}</p>
+  <div class="flex flex-row items-center gap-1">
+    <p>${nameEvent}</p>
+    <i class="fa-solid fa-user-group ml-2"></i>
+    <p>${value}</p>
+  </div>
+</div>`
+}
+
+let templateRowStats = (nameEvent, revenues, percentageAttendance) => {
+  return `<div class="grid grid-cols-3 gap-4">
+  <p>${nameEvent}</p>
+  <p><i class="fa-solid fa-sack-dollar"></i> ${revenues} USD</p>
+  <p><i class="fa-solid fa-user-group"></i> ${percentageAttendance}%</p>
+</div>`
+}
