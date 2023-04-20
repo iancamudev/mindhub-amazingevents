@@ -75,7 +75,7 @@ let navbarTemplate = () => {
 let navbarMobileTemplate = () => {
   const currentPage = window.location.href.split('/').at(-1).split('.').at(0)
   return `<nav class="w-full flex flex-row flex-wrap justify-between items-center px-12 mt-1">
-      <img src="../../../src/assets/small-logo.png" alt="" class="w-fit" />
+      <img src="../assets/small-logo.png" alt="" class="w-fit" />
       <div class="flex flex-row gap-4 text-3xl text-[#D90368] ">
       <i
         class="fa-brands fa-square-instagram hover:scale-110 duration-300 cursor-pointer"
@@ -88,14 +88,14 @@ let navbarMobileTemplate = () => {
       ></i>
     </div>
       <div class="flex flex-row text-white w-full justify-center">
-        <a href="../../../src/index.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'index' && 'bg-[#D90368]'}">Home</a>
-        <a href="../../../src/pages/upcoming.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'upcoming' && 'bg-[#D90368] '}"
+        <a href="../index.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'index' && 'bg-[#D90368]'}">Home</a>
+        <a href="../pages/upcoming.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'upcoming' && 'bg-[#D90368] '}"
           >Upcoming</a
         >
-        <a href="../../../src/pages/past.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'past' && 'bg-[#D90368]'}"
+        <a href="../pages/past.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'past' && 'bg-[#D90368]'}"
           >Past</a
         >
-        <a href="../../../src/pages/stats.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'stats' && 'bg-[#D90368]'}"
+        <a href="../pages/stats.html" class="hover:scale-110 duration-300 px-4 ${currentPage === 'stats' && 'bg-[#D90368]'}"
           >Stats</a
         >
       </div>
