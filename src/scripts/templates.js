@@ -1,5 +1,5 @@
 let cardGenerator = (el) => {
-  return `<a href='../pages/details.html?id=${el._id}'
+  return `<a href='../../src/pages/details.html?id=${el._id}'
         class="h-[300px] rounded-2xl flex flex-col justify-between text-white bg-cover bg-center"
         style="background-image: url(${el.image})"
       >
