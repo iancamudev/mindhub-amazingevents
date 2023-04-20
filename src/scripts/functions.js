@@ -109,14 +109,14 @@ let highestCapacity = (events) => {
   return arr[0]
 }
 
+
 let categoriesFilter = (events, categories) => {
   let arr = []
   for (let category of categories) {
-    let revenues = events.reduce((revenues, event) => revenues += (event.category === category ? event.price * event.estimate : 0) , 0)
-    let capacity = events.reduce((capacity, event) => capacity += (event.category === category ? event.capacity : 0) , 0)
-    let estimate = events.reduce((estimate, event) => estimate += (event.category === category ? event.estimate : 0) , 0)
-    arr.push({category: category, revenues, attendance: (estimate / capacity ) * 100
-     })
+    let catEvents = events.filter((event) => event.category === category)
+    let attendance = catEvents.reduce((porc, event) => porc += (event.estimate / event.capacity) * 100, 0)
+    let revenues = catEvents.reduce((revenues, event) => revenues += event.price * event.estimate, 0)
+    arr.push({category: category, revenues, attendance: attendance/catEvents.length})
   }
   return arr
 }
@@ -124,11 +124,10 @@ let categoriesFilter = (events, categories) => {
 let categoriesPastFilter = (events, categories) => {
   let arr = []
   for (let category of categories) {
-    let revenues = events.reduce((revenues, event) => revenues += (event.category === category ? event.price * event.assistance : 0) , 0)
-    let capacity = events.reduce((capacity, event) => capacity += (event.category === category ? event.capacity : 0) , 0)
-    let assistance = events.reduce((assistance, event) => assistance += (event.category === category ? event.assistance : 0) , 0)
-    arr.push({category: category, revenues, attendance: (assistance / capacity ) * 100
-     })
+    let catEvents = events.filter((event) => event.category === category)
+    let attendance = catEvents.reduce((porc, event) => porc += (event.assistance / event.capacity) * 100, 0)
+    let revenues = catEvents.reduce((revenues, event) => revenues += event.price * event.assistance, 0)
+    arr.push({category: category, revenues, attendance: attendance/catEvents.length})
   }
   return arr
 }
