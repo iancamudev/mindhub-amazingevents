@@ -5,6 +5,13 @@ let indexJs = async () => {
   let main = document.getElementById("main-home");
 
   filterData({events, currentDate})
+  
+   //Dolar blue
+    let dolar = await fetch('https://dolar-api-argentina.vercel.app/v1/dolares').then((data)=>data.json()).then((response)=>response[1])
+    let navbarContainer = document.getElementById('nav-container')
+    let dolarButton = document.createElement('div')
+    dolarButton.innerHTML= `<div class="flex flex-row text-white bg-[#D90368] px-4 py-2 w-fit mt-4">Dolar blue: $${dolar.venta}<div>`
+    navbarContainer.appendChild(dolarButton)
 
   //Category manager
   let categoryBtnActive = false;
