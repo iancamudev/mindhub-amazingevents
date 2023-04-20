@@ -3,7 +3,7 @@ let notEventsFound = () =>{
     Swal.fire({
           html: `
               <div class="flex flex-col items-center" > 
-                <img src="../../src/assets/no_result.png" class="w-32"/>
+                <img src="../assets/no_result.png" class="w-32"/>
                   <div class="text-[#D90368]">
                     <h4 class="">No events found</h4>
                     <p class=""> Try another search!</p>
